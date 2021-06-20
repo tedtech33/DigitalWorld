@@ -1,0 +1,45 @@
+#%RAML 1.0
+title: Demo-2
+baseUri: http://localhost:8081/demo_2/v1
+description: Mule application/API
+version: 1.0.0
+/customerName:
+  get:
+    queryParameters:
+      name:
+        type: string
+        description: customers name
+        maxLength: 22
+        required: true
+        example: Theodros
+    headers:
+      connection-type:
+        
+        description: multiple connection is allowed for this rest api
+        type: array
+        required: false
+      session:
+        description: connection session is stored
+        type: string
+        required: false
+    responses:
+       200:
+        body:
+          application/json:
+            example:
+              {
+                "Hello Theodros, welcome to Mulesoft, today is 2021-06-16"
+              }
+       404:
+        body:
+          application/json:
+            example:
+              {"message": "no person found"}
+       500:
+         body:
+          application/json:
+            example:
+              {
+                "message": "Server Error"
+              }	
+            
